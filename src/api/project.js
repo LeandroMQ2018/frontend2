@@ -1,7 +1,7 @@
 
 
 // URL base para la API, donde se realizarán las solicitudes
-const API_URL = "https://backend2-h2re.onrender.com";
+const API_URL = import.meta.env.VITE_API_URL || "https://backend2-h2re.onrender.com/api";
 
 // Función para crear un nuevo proyecto
 export const createProject = async (projectData) => {
