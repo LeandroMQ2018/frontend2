@@ -1,7 +1,7 @@
 
 
 // URL base para la API, donde se realizarán las solicitudes
-const API_URL = "http://localhost:4000/api";
+const API_URL = "https://backend2-h2re.onrender.com";
 
 // Función para crear un nuevo proyecto
 export const createProject = async (projectData) => {
