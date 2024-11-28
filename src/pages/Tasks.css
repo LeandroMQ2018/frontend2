@@ -1,77 +1,134 @@
-/* src/pages/Tasks.css */
+/* Styles for Tasks component (Tasks.css) */
 
+/* General Styles */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2rem;
-  }
-  
-  button {
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 1rem;
-    margin-right: 10px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 0 auto 20px auto;
-  }
-  
-  input,
-  select {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: white;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  strong {
-    font-size: 1.2rem;
-  }
-  
-  li button {
-    background-color: #dc3545;
-  }
-  
-  li button:hover {
-    background-color: #c82333; 
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 20px 0;
+  color: #333;
+}
+
+/* Button Styles */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Form Styles */
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  width: 300px;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form input[type="number"] {
+  -webkit-appearance: none; /* Remove number input spinner */
+  -moz-appearance: textfield; /* Remove number input spinner */
+}
+
+form input:focus,
+form select:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+form button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Tasks List Styles */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+  width: 80%;
+  max-width: 600px;
+}
+
+ul li {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul li button {
+  background-color: #f44336; /* Red for delete */
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+ul li button:hover {
+  background-color: #d32f2f;
+}
+
+ul li strong {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+ul li span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Button for hiding/showing tasks */
+button + button {
+  margin-left: 10px;
+  background-color: #ff9800; /* Orange for toggle button */
+}
+
+button + button:hover {
+  background-color: #f57c00;
+}
