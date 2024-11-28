@@ -1,63 +1,53 @@
-
-
 // URL base para la API, donde se realizarán las solicitudes
 const API_URL = import.meta.env.VITE_API_URL || "https://backend2-h2re.onrender.com/api";
 
 // Función para crear un nuevo proyecto
 export const createProject = async (projectData) => {
-  // Realiza una solicitud POST a la ruta /proyectos
   const response = await fetch(`${API_URL}/proyectos`, {
-    method: "POST", // Método HTTP utilizado para la solicitud
+    method: "POST",
     headers: {
-      "Content-Type": "application/json", // Indica que se está enviando un objeto JSON
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(projectData), // Convierte los datos del proyecto a formato JSON
+    body: JSON.stringify(projectData),
   });
-  
-  // Devuelve la respuesta en formato JSON
+
   return response.json();
 };
 
 // Función para obtener todos los proyectos
 export const getProjects = async () => {
-  // Realiza una solicitud GET a la ruta /proyectos
   const response = await fetch(`${API_URL}/proyectos`, {
-    method: "GET", // Método HTTP utilizado para la solicitud
+    method: "GET",
     headers: {
-      "Content-Type": "application/json", // Indica que se espera un objeto JSON
+      "Content-Type": "application/json",
     },
   });
-  
-  // Devuelve la respuesta en formato JSON
+
   return response.json();
 };
 
 // Función para actualizar un proyecto existente
 export const updateProject = async (id, projectData, token) => {
-  // Realiza una solicitud PUT a la ruta /proyectos/:id
   const response = await fetch(`${API_URL}/proyectos/${id}`, {
-    method: "PUT", // Método HTTP utilizado para la solicitud
+    method: "PUT",
     headers: {
-      "Content-Type": "application/json", // Indica que se está enviando un objeto JSON
-      Authorization: `Bearer ${token}`, // Incluye el token de autorización en la cabecera
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`, // Incluye el token de autorización
     },
-    body: JSON.stringify(projectData), // Convierte los datos del proyecto a formato JSON
+    body: JSON.stringify(projectData),
   });
-  
-  // Devuelve la respuesta en formato JSON
+
   return response.json();
 };
 
 // Función para eliminar un proyecto
 export const deleteProject = async (id, token) => {
-  // Realiza una solicitud DELETE a la ruta /proyectos/:id
   const response = await fetch(`${API_URL}/proyectos/${id}`, {
-    method: "DELETE", // Método HTTP utilizado para la solicitud
+    method: "DELETE",
     headers: {
-      Authorization: `Bearer ${token}`, // Incluye el token de autorización en la cabecera
+      Authorization: `Bearer ${token}`, // Incluye el token de autorización
     },
   });
-  
-  // Devuelve la respuesta en formato JSON
+
   return response.json();
 };
