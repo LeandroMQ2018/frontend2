@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: process.env.PORT, // Usa el puerto asignado por Render, o 5173 si no está configurado.
+    port: process.env.PORT,5173 // Usa el puerto asignado por Render, o 5173 si no está configurado.
   },
   build: {
     outDir: 'dist', // Define el directorio de salida para producción
