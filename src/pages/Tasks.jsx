@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react"; 
-import { AuthContext } from "../context/AuthContext"; 
-import { getTasks, createTask, updateTask, deleteTask } from "../api/task"; 
-import { useParams } from "react-router-dom"; 
-import './Tasks.css'; 
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { getTasks, createTask, updateTask, deleteTask } from "../api/task";
+import { useParams } from "react-router-dom";
+import './Tasks.css';
 
 const Tasks = () => {
   const { token } = useContext(AuthContext); // Obtiene el token del contexto
@@ -15,6 +15,7 @@ const Tasks = () => {
     prioridad: 3,
   });
   const [editingTask, setEditingTask] = useState(null); // Estado para manejar la tarea en edición
+  const [showTasks, setShowTasks] = useState(false); // Estado para controlar la visibilidad de las tareas
 
   // Efecto para obtener las tareas al cargar el componente
   useEffect(() => {
@@ -61,53 +62,66 @@ const Tasks = () => {
 
   return (
     <div>
-      <h1>Tarea</h1>
-      <button onClick={() => setEditingTask(null)}>agregar tarea</button> {/* Botón para agregar una nueva tarea */}
+      <h1>Tareas</h1>
 
-      <form onSubmit={handleCreateOrUpdateTask}> {/* Formulario para crear o editar tareas */}
-        <input
-          type="text"
-          name="titulo"
-          placeholder="Título de la tarea"
-          value={newTask.titulo}
-          onChange={handleInputChange} // Maneja el cambio en el input
-          required // Campo obligatorio
-        />
-        <input
-          type="text"
-          name="descripcion"
-          placeholder="Descripción de la tarea"
-          value={newTask.descripcion}
-          onChange={handleInputChange} // Maneja el cambio en el input
-        />
-        <select name="estado" value={newTask.estado} onChange={handleInputChange}> {/* Selección para el estado de la tarea */}
-          <option value="pendiente">Pendiente</option>
-          <option value="en progreso">En Progreso</option>
-          <option value="completada">Completada</option>
-        </select>
-        <input
-          type="number"
-          name="prioridad"
-          placeholder="Prioridad"
-          min="1"
-          max="5"
-          value={newTask.prioridad}
-          onChange={handleInputChange} // Maneja el cambio en el input
-        />
-        <button type="submit">{editingTask ? "Actualizar Tarea" : "Guardar Tarea"}</button> {/* Cambia el texto del botón según el modo */}
-      </form>
+      {/* Botón para mostrar/ocultar tareas */}
+      <button onClick={() => setShowTasks(!showTasks)}>
+        {showTasks ? "Ocultar Tareas" : "Ver Tareas"}
+      </button>
 
-      <ul>
-        {tasks.map((task) => ( // Mapea sobre las tareas para mostrarlas
-          <li key={task._id}>
-            <strong>{task.titulo}</strong> - {task.descripcion}
-            <button onClick={() => handleEditTask(task)}>Editar</button> {/* Botón para editar la tarea */}
-            <button onClick={() => handleDeleteTask(task._id)}>Eliminar</button> {/* Botón para eliminar la tarea */}
-          </li>
-        ))}
-      </ul>
+      {/* Mostrar tareas si showTasks es true */}
+      {showTasks && (
+        <div>
+          <button onClick={() => setEditingTask(null)}>Agregar tarea</button> {/* Botón para agregar una nueva tarea */}
+
+          {/* Formulario para crear o editar tareas */}
+          <form onSubmit={handleCreateOrUpdateTask}>
+            <input
+              type="text"
+              name="titulo"
+              placeholder="Título de la tarea"
+              value={newTask.titulo}
+              onChange={handleInputChange} // Maneja el cambio en el input
+              required // Campo obligatorio
+            />
+            <input
+              type="text"
+              name="descripcion"
+              placeholder="Descripción de la tarea"
+              value={newTask.descripcion}
+              onChange={handleInputChange} // Maneja el cambio en el input
+            />
+            <select name="estado" value={newTask.estado} onChange={handleInputChange}> {/* Selección para el estado de la tarea */}
+              <option value="pendiente">Pendiente</option>
+              <option value="en progreso">En Progreso</option>
+              <option value="completada">Completada</option>
+            </select>
+            <input
+              type="number"
+              name="prioridad"
+              placeholder="Prioridad"
+              min="1"
+              max="5"
+              value={newTask.prioridad}
+              onChange={handleInputChange} // Maneja el cambio en el input
+            />
+            <button type="submit">{editingTask ? "Actualizar Tarea" : "Guardar Tarea"}</button> {/* Cambia el texto del botón según el modo */}
+          </form>
+
+          {/* Lista de tareas */}
+          <ul>
+            {tasks.map((task) => ( // Mapea sobre las tareas para mostrarlas
+              <li key={task._id}>
+                <strong>{task.titulo}</strong> - {task.descripcion}
+                <button onClick={() => handleEditTask(task)}>Editar</button> {/* Botón para editar la tarea */}
+                <button onClick={() => handleDeleteTask(task._id)}>Eliminar</button> {/* Botón para eliminar la tarea */}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Tasks; // Exporta el componente Tasks
+export default Tasks;
